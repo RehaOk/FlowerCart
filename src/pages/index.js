@@ -399,11 +399,6 @@ const Index = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log({
-    items: state.items,
-    addedItems: state.addedItems,
-    totalAmount: state.total,
-  });
   return {
     items: state.items,
     addedItems: state.addedItems,

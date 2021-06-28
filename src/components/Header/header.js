@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -213,15 +212,4 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  let itemQuantity = 0;
-  state.addedItems.forEach((item) => {
-    itemQuantity = itemQuantity + item.quantity;
-  });
-
-  return {
-    itemQuantity: itemQuantity,
-  };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;
