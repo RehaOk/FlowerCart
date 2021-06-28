@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import history from "./utils/history";
+import thunk from "redux-thunk";
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import Index from "./pages/index.js";
+import { Provider } from "react-redux";
+import cartReducer from "./redux/reducers/cartReducer";
+import { Route, Router, Switch } from "react-router-dom";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const store = createStore(cartReducer, applyMiddleware(thunk));
+
+const routing = (
+  <Provider store={store}>
+    <Router history={history}>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Index} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(routing, document.getElementById("root"));
